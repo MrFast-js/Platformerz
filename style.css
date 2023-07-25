@@ -1,0 +1,1109 @@
+body {
+    background: black;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+#notificationMenu {
+    position: absolute;
+    right: 50%;
+    margin-left: -50%;
+    text-align: center;
+    transform: translateX(50%);
+    top: 5%;
+    transition: width 1s ease-in-out;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.notificationBg {
+    background: rgba(10, 10, 10, 0.75);
+    color: white;
+    z-index: 10;
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+.notificationClose {
+    position: relative;
+    left: 85%;
+}
+
+.notificationText {
+    padding: 10px 10px;
+    transition: width 1s ease-in-out;
+}
+
+canvas {
+    position: absolute;
+    right: 50%;
+    margin-left: -50%;
+    transform: translateX(50%);
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+#timer {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+}
+
+#fps {
+    position: absolute;
+    top: 25px;
+    font-size: 20px;
+}
+
+#record {
+    position: absolute;
+    top: 47px;
+    font-size: 20px;
+}
+
+.screenText {
+    left: 20px;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    transition: color 0.2s ease-out, -webkit-text-stroke 0.2s ease-out;
+}
+
+#text {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0);
+    background: #f2f0f0;
+    padding: 10px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.heart {
+    /*   image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated; */
+    position: absolute;
+    width: 50px;
+    top: 10px;
+}
+
+#heart1 {
+    right: 20px;
+}
+
+#heart2 {
+    right: 70px;
+}
+
+#heart3 {
+    right: 120px;
+}
+
+#buttons {
+    visibility: hidden;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 10px;
+    right: 1%;
+    bottom: 5%;
+    border-radius: 15px;
+}
+
+#openMenu {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+}
+
+#uploadMenu {
+    visibility: hidden;
+    position: absolute;
+    top: 15%;
+    width: 40%;
+    height: 70%;
+    left: 30%;
+    border-radius: 15px;
+    border: 1px solid black;
+    background: white;
+}
+
+#controlMenu {
+    visibility: hidden;
+    position: absolute;
+    color: white;
+    top: 15%;
+    width: 40%;
+    height: 70%;
+    left: 30%;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+#white {
+    background: #1f1f1f;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+#prizeMenu {
+    visibility: hidden;
+    position: absolute;
+    top: 0.5%;
+    width: 58.5%;
+    height: 98%;
+    left: 21%;
+    padding: none;
+    border-radius: 15px;
+    border: 1px solid black;
+    background: white;
+    overflow: hidden;
+}
+
+#browseMenu {
+    visibility: hidden;
+    position: absolute;
+    top: 0.5%;
+    width: 58.5%;
+    height: 98%;
+    left: 21%;
+    padding: none;
+    border-radius: 15px;
+    border: 1px solid black;
+    background: white;
+}
+
+#cosmeticsMenu {
+    visibility: hidden;
+    position: absolute;
+    top: 0.5%;
+    width: 58.5%;
+    height: 98%;
+    left: 21%;
+    padding: none;
+    border-radius: 15px;
+    border: 1px solid black;
+    background: white;
+    z-index: 2;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 0;
+    width: 0;
+    display: none;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: lightgray;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#playerInfoPanel {
+    color: black;
+    visibility: visible;
+    user-select: text;
+    position: absolute;
+    top: 15%;
+    width: 19%;
+    height: 70%;
+    left: 79.5%;
+    border-radius: 0px 15px 15px 0px;
+    border: 1px solid black;
+    background: white;
+    padding-left: 1%;
+}
+
+#mapInfoPanel {
+    user-select: text;
+    position: absolute;
+    top: 15%;
+    width: 20%;
+    height: 70%;
+    left: 0.5%;
+    border-radius: 15px 0px 0px 15px;
+    border: 1px solid black;
+    background: white;
+    padding-left: 1%;
+    color: black;
+}
+
+#mapInfoPanel_mapTitle {
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+}
+
+#uploadItem {
+    position: relative;
+    display: flex;
+    width: 95%;
+    height: 10%;
+}
+
+.uploadItem {
+    position: relative;
+    display: flex;
+    width: 95%;
+    height: 10%;
+}
+
+.uploadInput {
+    position: absolute;
+    margin-top: 20px;
+    right: 0%;
+    width: 50%;
+}
+
+.uploadLabel {
+    position: relative;
+    margin-top: 17px;
+    font-size: 25px;
+    color: black;
+    left: 3%;
+}
+
+#mapName {
+    border-radius: 5px;
+    background: white;
+    font-size: 20px;
+}
+
+#rawMap {
+    border-radius: 5px;
+    background: white;
+    font-size: 20px;
+}
+
+input {
+    border: 1px solid black;
+    background: none;
+    outline: none;
+}
+
+button {
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background: #00B8F8;
+    cursor: pointer;
+    padding: 5px 5px;
+}
+
+#postLevel {
+    position: absolute;
+    bottom: 2%;
+    left: 35%;
+    width: 30%;
+    font-size: 30px;
+}
+
+#postLevel:active {
+    background: #0086C6;
+}
+
+#deleteLevel {
+    background: #d92525;
+    position: absolute;
+    bottom: 4%;
+    left: 5%;
+    width: 20%;
+    font-size: 15px;
+}
+
+#deleteLevel:active {
+    background: #b31d1d;
+}
+
+.toggle {
+    position: absolute;
+    top: 30%;
+    right: 0%;
+    height: 70%;
+    font-size: 20px;
+    width: 20%;
+}
+
+#rating {
+    width: 30%;
+    cursor: pointer;
+}
+
+#ratingOverlay {
+    width: 30%;
+    cursor: pointer;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+#searchbar {
+    position: relative;
+    top: 2%;
+    width: 75%;
+    left: 2%;
+    border-radius: 5px;
+    background: white;
+    font-size: 20px;
+    border: 1px solid black;
+}
+
+#maps {
+    position: absolute;
+    top: 7%;
+    left: 2%;
+    width: 96%;
+    height: 84%;
+    overflow: scroll;
+    border: 2px gray solid;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.level {
+    cursor: pointer;
+    position: relative;
+    margin: 0px;
+    margin-top: 5px;
+    width: 99.5%;
+    height: 6.5%;
+    border-radius: 10px;
+    border: 2px solid black;
+    background: white;
+    overflow: hidden;
+}
+
+.level:hover {
+  background: #dedede;
+}
+
+#levelTitle {
+    position: relative;
+    top: 15%;
+    width: 80%;
+    margin: 0;
+    left: 2%;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+#levelRating {
+    pointer-events: none;
+    position: absolute;
+    height: 60%;
+    right: 0%;
+    top: 15%;
+}
+
+.highlight {
+    font-weight: bold;
+}
+
+grey {
+    font-size: 15px;
+    position: absolute;
+    top: 17%;
+    color: grey;
+    right: 24%;
+}
+
+
+/*   */
+
+.timeType {
+    padding-left: 5px;
+    padding-right: 5px;
+    position: absolute;
+    width: 75px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    top: 17%;
+    border-radius: 15px;
+    right: 3%;
+    border: 2px solid black;
+  
+}
+
+bestTime {
+    background: darkgray;
+}
+
+ownTime {
+    color: white;
+    background: green;
+}
+
+noTime {
+    color: white;
+    background: orange;
+}
+
+#sortBy {
+    position: relative;
+    top: 2%;
+    left: 2%;
+    font-size: 20px;
+    width: 20%;
+    font-weight: bold;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: #00B8F8;
+    cursor: pointer;
+}
+
+#adminMenu {
+    user-select: text;
+    visibility: hidden;
+    position: absolute;
+    top: 15%;
+    width: 40%;
+    height: 70%;
+    left: 30%;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.adminLabel {
+    position: relative;
+    font-size: 20px;
+    margin: 0px;
+    color: white;
+    left: 3%;
+}
+
+#screenshot {
+    position: relative;
+    top: 5%;
+    border: 3px solid #00aeff;
+    left: 7.5%;
+    width: 475px;
+}
+
+#spectateStream {
+    visibility: hidden;
+}
+
+#randomMap {
+    position: absolute;
+    bottom: 1%;
+    font-size: 20px;
+    width: 25%;
+    left: 37.5%;
+    border: 2px solid black;
+}
+
+#records {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    bottom: -2%;
+    font-size: 20px;
+    left: 2%;
+}
+
+#mapCount {
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    bottom: 0%;
+    font-size: 20px;
+    right: 5%;
+}
+
+#editLevel {
+    position: absolute;
+    background: darkgray;
+    padding: 3px;
+    left: 15%;
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+@keyframes shine {
+    10% {
+        transform: translateX(800px) rotate(25deg);
+    }
+    100% {
+        transform: translateX(800px) rotate(25deg);
+    }
+}
+
+shine {
+    position: absolute;
+    top: -15%;
+    left: -2%;
+    background: rgba(255, 255, 255, 0.2);
+    width: 20px;
+    height: 80px;
+    transform: rotate(25deg);
+    animation: shine 5s ease-in infinite;
+}
+
+pauseButton {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 25px;
+    background: white;
+    border-radius: 30px;
+    border: 2px solid gray;
+    width: 30%;
+    padding-top: 5px;
+    height: 5%;
+    cursor: pointer;
+    transition: background 0.2s ease-out;
+}
+
+pauseButton:hover {
+    background: lightgray;
+}
+
+#returnToGame {
+    position: absolute;
+    left: 35%;
+    bottom: 53%;
+}
+
+#cosmeticsButton {
+    position: absolute;
+    left: 35%;
+    bottom: 45%;
+}
+
+#multiplayerButton {
+    position: absolute;
+    left: 35%;
+    bottom: 37%;
+}
+
+#returnToMainMenu {
+    position: absolute;
+    left: 35%;
+    bottom: 29%;
+}
+
+#reportBug {
+    position: absolute;
+    left: 35%;
+    padding-top: 5px;
+    height: 4%;
+    bottom: 38%;
+    width: 14%;
+    font-size: 20px;
+}
+
+#reportMap {
+    position: absolute;
+    left: 51%;
+    padding-top: 5px;
+    height: 4%;
+    bottom: 38%;
+    width: 14%;
+    font-size: 20px;
+}
+
+filter {
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#pauseMenu {
+    visibility: hidden;
+}
+
+menuButton {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    position: absolute;
+    left: 30px;
+    border-radius: 30px;
+    background: white;
+    border: 2px solid gray;
+    color: black;
+    font-size: 40px;
+    width: 30%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    height: 6%;
+    transition: background 0.2s ease-in-out;
+}
+
+menuButton:hover {
+    background: #bababa;
+}
+
+cosmeticsButton {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    border-radius: 30px;
+    background: white;
+    border: 2px solid gray;
+    color: black;
+    font-size: 15px;
+    padding: 7px 7px;
+    transition: background 0.5s ease-in-out;
+}
+
+cosmeticsButton:hover {
+    background: lightgray;
+}
+
+#campaign {
+    position: absolute;
+    top: 45%;
+}
+
+#multiplayer {
+    position: absolute;
+    top: 55%;
+}
+
+#editor {
+    position: absolute;
+    top: 65%;
+}
+
+#tutorialButton {
+    position: absolute;
+    top: 75%;
+}
+
+#cosmetics {
+    position: absolute;
+    top: 85%;
+}
+
+#description {
+    padding-left: 20px;
+    padding-top: 15px;
+    width: 60%;
+    height: 38%;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 30px;
+}
+
+#title {
+    font-family: pixelated;
+    font-size: 180px;
+    position: absolute;
+    left: 30px;
+    top: 0%;
+    margin: 0;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    letter-spacing: 5px;
+}
+
+#newName {
+    font-family: pixelated;
+    position: absolute;
+    border-radius: 30px;
+    background: white;
+    border: 2px solid gray;
+    height: 10%;
+    width: 25%;
+    font-size: 20px;
+    left: 37.5%;
+    bottom: 30%;
+}
+
+#customizeMenu {
+    visibility: hidden;
+    height: 60%;
+    left: 30%;
+    top: 10%;
+    width: 35%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+
+#continue {
+    font-family: pixelated;
+    position: absolute;
+    border-radius: 30px;
+    background: white;
+    border: 2px solid gray;
+    height: 10%;
+    width: 25%;
+    font-size: 20px;
+    left: 37.5%;
+    bottom: 1%;
+    color: black;
+}
+
+#customizeMenuText {
+    color: white;
+    position: absolute;
+    bottom: 7%;
+    text-align: center;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1px black;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+#gameInstance {
+    visibility: hidden;
+}
+#canvases {
+  
+}
+
+#mainMenu {
+    font-family: pixelated;
+}
+
+@font-face {
+    font-family: pixelated;
+    src: url(assets/font.ttf);
+}
+
+editOption {
+    outline: 2px solid #404040;
+    font-family: pixelated;
+    position: absolute;
+    background: white;
+    width: 11%;
+    padding: 0;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: 250px;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    top: 35%;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: outline 0.2s ease-out;
+    ;
+}
+
+editOption:hover {
+    outline: 6px solid #404040;
+}
+
+editOptionDescription {
+    border-top: 3px solid #404040;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    font-size: 23px;
+    top: 55%;
+}
+
+#openEditorButton {
+    left: 55%;
+}
+
+#uploadMapButton {
+    left: 30%;
+}
+
+#editorImage {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+}
+
+#uploadImage {
+    position: absolute;
+    width: 60%;
+    left: 20%;
+}
+
+#editorMenu {
+    visibility: hidden;
+}
+
+#loadingGif {
+    visibility: hidden;
+    position: absolute;
+    width: 15%;
+    left: 42.5%;
+    top: 42.5%;
+}
+
+changelog {
+    font-size: 20px;
+}
+
+#playercosmetics {
+    font-family: pixelated;
+    font-size: 20px;
+    position: absolute;
+    color: white;
+    top: 5%;
+    left: 5%;
+    border-radius: 10px;
+    padding: 10px 10px;
+    z-index: 10;
+}
+
+#playerName {
+    white-space: nowrap;
+}
+
+#googleSignIn {
+    visibility: hidden;
+    z-index: 5;
+    position: absolute;
+    bottom: 5%;
+    right: 15%;
+}
+
+.gallery {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.gallery-container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    image-rendering: pixelated;
+}
+
+.gallery-item {
+    border-radius: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    background: white;
+    width: 20%;
+    height: 20%;
+    padding: 5px;
+    position: relative;
+    border: 2px solid black;
+}
+
+#prizeWinSquare {
+    position: absolute;
+    border: 5px solid black;
+    border-radius: 10px;
+    left: 43%;
+    top: 39%;
+    opacity: 0.6;
+    width: 14%;
+    height: 22%;
+    z-index: 2;
+}
+
+leftFade {
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0));
+    position: absolute;
+    width: 40%;
+    left: 0;
+    height: 100%;
+    z-index: 3;
+}
+
+rightFade {
+    background: linear-gradient(to left, white, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0));
+    position: absolute;
+    width: 40%;
+    right: 0;
+    height: 100%;
+    z-index: 3;
+}
+
+#playerPreview {
+  position: absolute;
+  top: 27.5%;
+}
+
+.cosmeticImg {
+  image-rendering: pixelated;
+  position: absolute;
+  top: 0;
+  left: 21.2%;
+  width: 360px;
+}
+
+#cosmeticSkinInventory {
+  padding-left: 10px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  position: absolute;
+  height: 80%;
+  top: 10%;
+  width: 46%;
+  left: -30%;
+  overflow: scroll;
+}
+#cosmeticSkinInventory::-webkit-scrollbar {
+  display: none;
+}
+
+#cosmeticHatInventory {
+  padding-left: 10px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  position: absolute;
+  height: 80%;
+  top: 10%;
+  width: 46%;
+  right: -30%;
+  overflow: scroll;
+}
+#cosmeticHatInventory::-webkit-scrollbar {
+  display: none;
+}
+
+.cosmeticItem {
+  padding: 10px;
+  image-rendering: pixelated;
+  margin: 10px;
+  width: 77px;
+  height: 111.27px;
+  position: relative;
+  background: rgb(230,230,230);
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.cosmeticItem:hover {
+  outline: 2px solid black;
+}
+
+.epicRarity {
+  background: rgb(255,85,255);
+}
+
+.rareRarity {
+  background: rgb(125,125,255);
+}
+
+.specialRarity {
+  background: rgb(255,85,85);
+}
+.lockedCosmetic {
+  background: rgb(196, 196, 196);
+  padding-top: 31px;
+  height: 70px;
+  cursor: not-allowed;
+  padding-bottom: 30px;
+}
+.lockedCosmetic:hover {
+  outline: none;
+}
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+#loadingText {
+  position: absolute;
+  color: gray;
+  font-weight: 700;
+  font-size: 30px;
+  position: absolute;
+  left: 23%;
+  top: 65%;
+}
+
+#cosmeticColorSelector {
+  bottom: 10%;
+  background: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  left: 20%;
+  position: absolute;
+  width: 60%;
+  height: 10%;
+  padding-bottom: 1%;
+}
+.center {
+  text-align: center;
+  margin: 10px;
+}
+#colors {
+  display: flex;
+  height: 70%;
+}
+.skinColor {
+  left: 2%;
+  width: 7%;
+  height: 70%;
+  margin: 0;
+  margin-left: 4%;
+  position: relative;
+  background: red;
+  border: 1px solid black;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.skinColor:hover {
+  outline: 2px solid black;
+}

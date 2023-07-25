@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title id='title'>Platformerz</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="https://i.imgur.com/rgaC5UY.png">
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="753569570001-9fsqh605qdo94jsaiqtavt3dte1jeu43.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js" integrity="sha512-2rUSTSAeOO02jF6eBqENNqPs1EohenJ5j+1dgDPdXSLz9nOlrr8DJk4zW/lDy8rjhGCSonW3Gx812XJQIKZKJQ==" crossorigin="anonymous"></script>
+    <div id='gameInstance'>
+        <div id='canvases'>
+          <!--     Static Platforms -->
+          <canvas id="myCanvas" width="1340" height="620" style="background:#eee"></canvas>
+          <!--     block animations -->
+          <canvas id="myCanvas3" width="1340" height="620"></canvas>
+          <!--     Enemy Canvas-->
+          <canvas id="myCanvas7" width="1340" height="620"></canvas>
+					
+					<canvas id="myCanvas8" width="1340" height="620"></canvas>
+          <!--     Boss Battle -->
+          <canvas id="myCanvas6" width="1340" height="620"></canvas>
+          <!--     Particles,names,players -->
+          <canvas id="myCanvas2" width="1340" height="620"></canvas>
+          <!--     Limited Vision -->
+          <canvas id="myCanvas4" width="1340" height="620"></canvas>
+          <!--     Mini Spikes -->
+          <canvas id="myCanvas5" width="1340" height="620"></canvas>
+        </div>
+
+        <h1 class='screenText' id='timer'>00:00:00</h1>
+        <h1 class='screenText' id='fps'>60 fps</h1>
+        <h1 class='screenText' id='record'></h1>
+
+        <h3 id="text" style="visibility:hidden"></h3>
+
+        <white id='white'></white>
+
+        <img id='heart1' class='heart' src='https://i.imgur.com/voVCZNK.png'></img>
+        <img id='heart2' class='heart' src='https://i.imgur.com/voVCZNK.png'></img>
+        <img id='heart3' class='heart' src='https://i.imgur.com/voVCZNK.png'></img>
+
+        <div id='mapInfoPanel' style='visibility:hidden;'>
+            <p id='mapInfoPanel_mapTitle'></p>
+            <p id='mapInfoPanel_mapAuthor'></p>
+            <p id='mapInfoPanel_mapDate'></p>
+            <p id='mapInfoPanel_mapPlays'></p>
+            <p id='mapInfoPanel_recordHolder'></p>
+            <p id='mapInfoPanel_mapRecord'></p>
+        </div>
+
+        <div id='playerInfoPanel' style='visibility:hidden;'>
+            <p id='playerInfoPanel_playerName'></p>
+            <p id='statistics'></p>
+            <div id='googleSignIn' class="g-signin2" data-onsuccess="onSignIn" data-theme='dark' data-width='200px'></div>
+        </div>
+
+        <div id='uploadMenu'>
+            <div id='uploadItem'>
+                <p class='uploadLabel'>Map Name</p>
+                <input id='mapName' class='uploadInput'></input>
+            </div>
+
+            <div id='uploadItem'>
+                <p class='uploadLabel'>Difficulty Rating</p>
+                <img id='rating' class='uploadInput' src='./assets/stars/star1.png'></img>
+                <img id='ratingOverlay' class='uploadInput' src='./assets/stars/star1.png'></img>
+            </div>
+
+            <div id='rawMapData' class='uploadItem'>
+                <p class='uploadLabel'>Raw Map Data</p>
+                <input id='rawMap' class='uploadInput' maxlength='2000000'></input>
+            </div>
+
+            <button id='postLevel'>Post Level</button>
+            <button id='deleteLevel'>Delete Level</button>
+        </div>
+        <div id='browseMenu'>
+            <p id='loadingText'>Servers Starting, Please Wait...</p>
+            <img id='loadingGif' src='assets/loading.gif'></img>
+            <input id='searchbar' placeholder='Search Maps..'></input>
+            <select id='sortBy'>
+              <option value="plays">Plays</option>
+              <option value="difficulty">Difficulty</option>
+              <option value="newest">Newest</option>
+            </select>
+            <div id='maps'>
+            </div>
+            <p id='mapCount'></p>
+            <button id='randomMap'>Random Map!</button>
+        </div>
+        <div id='notificationMenu'></div>
+    </div>
+
+    <div id='pauseMenu'>
+        <filter></filter>
+        <pauseButton id='reportMap'>Report Map</pauseButton>
+        <pauseButton id='returnToGame' onclick='togglePauseGame()'>Return To Game</pauseButton>
+        <pauseButton id='multiplayerButton'>Multiplayer</pauseButton>
+        <pauseButton id='cosmeticsButton' onclick='openCosmeticsMenu()'>Cosmetics</pauseButton>
+        <pauseButton id='returnToMainMenu'>Main Menu</pauseButton>
+    </div>
+
+    <div id='editorMenu'>
+        <editOption id='uploadMapButton'>
+            <editOptionDescription>
+                Upload your map to the multiplayer maps list!
+            </editOptionDescription>
+            <img id='uploadImage' src='assets/icons/upload.png'>
+
+            </img>
+        </editOption>
+        <editOption id='openEditorButton'>
+            <editOptionDescription>
+                Create your own map using the easy to use editor!
+            </editOptionDescription>
+            <img id='editorImage' src='assets/icons/edit.png'>
+
+            </img>
+        </editOption>
+    </div>
+
+    <div id='cosmeticsMenu'>
+        <div id='cosmeticColorSelector'>
+          <h1 class='center' style='font-size:20px;margin:0;margin-top:5px;'>Skin Colors</h1>
+          <div id='colors'>
+          </div>
+        </div>
+        <div id="cosmeticSkinInventory">
+        </div>
+        <div id="cosmeticHatInventory">
+        </div>
+        <canvas id='playerPreview'></canvas>
+        <img id='playerSkinImg' class='cosmeticImg' src=''/>
+        <img id='playerHatImg' class='cosmeticImg' src=''/>
+    </div>
+
+    <!--     Main Menu -->
+    <div id='mainMenu'>
+        <video autoplay muted loop id="myVideo">
+        <source src="assets/background.mp4" type="video/mp4">
+      </video>
+        <filter id='filter'></filter>
+
+        <div id='menuItems'>
+            <h1 id='title'>Platformerz</h1>
+            <menuButton id='campaign'>Campaign</menuButton>
+            <menuButton id='multiplayer'>Multiplayer</menuButton>
+            <menuButton id='editor'>Level Editor</menuButton>
+            <menuButton id='tutorialButton'>Tutorial</menuButton>
+            <menuButton id='cosmetics'>cosmetics</menuButton>
+            <div id='description'>
+
+            </div>
+        </div>
+    </div>
+    <script src="./handlers/cookieHandler.js"></script>
+		<script src="./handlers/missionHandler.js"></script>
+    <script src="./handlers/cosmeticsHandler.js"></script>
+    <script src="./player.js"></script>
+    <script src="./moreScript.js"></script>
+    <script src="./handlers/keyHandler.js"></script>
+    <script src="./handlers/mainMenuHandler.js"></script>
+    <script src="./handlers/cosmeticsMenuHandler.js"></script>
+  
+    <script src="./lists/blocks.js"></script>
+    <script src="./lists/levels.js"></script>
+    <script src="./handlers/bossHandler.js"></script>
+    <script src="./handlers/enemyHandler.js"></script>
+  
+    <script src="./handlers/particleHandler.js"></script>
+    <script src="./server/server.js"></script>
+    <script src="./server/multiplayer.js"></script>
+    <script src="./script.js"></script>
+    <script src="./server/uploads.js"></script>
+    <script src="./tutorial.js"></script>
+	  <script src="./handlers/somethingInconspicuous.js"></script>
+  
+
+</body>
+
+</html>
